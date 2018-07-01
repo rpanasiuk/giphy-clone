@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import _ from 'lodash';
+import Dialog from 'material-ui/Dialog';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { toggleFavoriteGif } from "../../actions/toggle-favorite-gif.js";
 
@@ -30,25 +30,27 @@ class Gif extends Component {
     const { original, fixed_width } = this.props.data.images;
 
     return (
-      <div>
-      <div className='box'>
-        <a onClick={this.handleOpen}>
-          <img src={fixed_width.gif_url} alt="Loading..." />
-        </a>
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <div className='box'>
+            <a onClick={this.handleOpen}>
+              <img src={fixed_width.gif_url} alt="Loading..." />
+            </a>
+          </div>
 
-      <Dialog
-        title="Dialog With Actions"
-        modal={false}
-        open={this.state.open}
-        onRequestClose={this.handleClose}
-        >
-        <div className="popup">
-          <img src={original.gif_url} alt="Loading..." />
+          <Dialog
+            title="Dialog With Actions"
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+            >
+            <div className="popup">
+              <img src={original.gif_url} alt="Loading..." />
+            </div>
+            <a className="favorite" onClick={this.handleToggle}>FAV</a>
+          </Dialog>
         </div>
-        <a className="favorite" onClick={this.handleToggle}>FAV</a>
-      </Dialog>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
