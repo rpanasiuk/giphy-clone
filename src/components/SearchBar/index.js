@@ -28,7 +28,7 @@ class SearchBar extends Component {
     }
 
     onSubmit = (object) => {
-        this.props.fetchData(object);
+        this.props.fetchData(object.searchInput);
     }
 
     render() {

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import GifList from "./components/GifList";
 import NavBar from "./components/NavBar";
 
-import { fetchData as initFetchData } from "./actions/fetch-data.js";
+import { initFetchData } from "./actions/fetch-data.js";
 
 import logo from './logo.svg';
 import './App.css';
@@ -27,13 +27,13 @@ class App extends Component {
 
   componentDidMount() {
     // init fetch
-    this.props.initFetchData(''); // do sprawdzenia
+    this.props.initFetchData();
   }
 
   render() {
     const { gifs, favorites } = this.props;
     routes[0].data = gifs;
-    routes[1].data = Object.values(favorites); //sprawdz zachowanie pustego obiektu
+    routes[1].data = Object.values(favorites);
 
     console.log('app render', this.props);
     return (
