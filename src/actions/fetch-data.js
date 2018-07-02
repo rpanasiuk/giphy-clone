@@ -1,43 +1,50 @@
 import GphApiClient from "giphy-js-sdk-core";
 
 export const FETCH_DATA = 'FETCH_DATA';
-export const INIT_FETCH_DATA = 'INIT_FETCH_DATA';
+export const RENDERING_STATUS = 'RENDERING_STATUS';
+export const SET_PAGE = 'SET_PAGE';
 
 const API_KEY = "8MpDegmGaRs7ubvKMEqvJaFcZdH5IGOC";
+const client = GphApiClient(API_KEY);
 
-export function fetchData(object) {
+export function fetchData(object, page=1) {
 	const config = { 
 		"q": object,
-		"limit": 20
+		"limit": page * 40
 	};
 
-    const client = GphApiClient(API_KEY);
 	const request = client.search('gifs', config);
 
-	return (dispatch) => {
-		request.then((response) => {
-			dispatch({
-				type: FETCH_DATA,
-				payload: response				
-			});		
-		})
-	}
+	return fetchHelper(request, FETCH_DATA)
 }
 
-export function initFetchData() {
+export function fetchTrendingData(page=1) {
 	const config = { 
-		"limit": 20
+		"limit": page * 40
 	};
 
-    const client = GphApiClient(API_KEY);
 	const request = client.trending("gifs", config);
 
+	return fetchHelper(request, FETCH_DATA)
+}
+
+function fetchHelper(request, type) {
 	return (dispatch) => {
-		request.then((response) => {
+		dispatch({ type: RENDERING_STATUS });
+		
+
+		return request.then((response) => {
 			dispatch({
-				type: INIT_FETCH_DATA,
+				type: type,
 				payload: response				
 			});		
 		})
-	}
+		.then(() => {
+			dispatch({ type: SET_PAGE, payload: null });
+		})
+		.then(() => {
+			dispatch({ type: RENDERING_STATUS })
+		})
+		.catch(err => console.warn(err.message));
+	}	
 }

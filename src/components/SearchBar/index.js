@@ -7,6 +7,7 @@ import { fetchData } from "../../actions/fetch-data.js";
 class SearchBar extends Component {
 
     renderField = (field) => {
+        console.log(field);
         return (
             <div className="form__row">
                 <div className="form__anim">
@@ -28,6 +29,8 @@ class SearchBar extends Component {
     }
 
     onSubmit = (object) => {
+        this.props.dispatch({ type: "SET_PAGE", payload: 1 }); // reset page counter with every new search
+        this.props.dispatch({ type: "FORM_FETCHED_DATA", payload: true }); // view represents form fetched data
         this.props.fetchData(object.searchInput);
     }
 
@@ -46,9 +49,6 @@ class SearchBar extends Component {
     }
 }
 
-export default reduxForm({
-    // validate,
+export default SearchBar = reduxForm({
     form: 'SearchBarForm'
-})(
-    connect(null, { fetchData })(SearchBar)
-)
+})( connect(null, { fetchData })(SearchBar) );

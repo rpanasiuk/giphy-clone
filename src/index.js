@@ -7,8 +7,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import reducers from "./reducers/index.js";
-
 ReactDOM.render(
 	<Provider store={configureStore().store}>
 		<PersistGate loading={null} persistor={configureStore().persistor}>

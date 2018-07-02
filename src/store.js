@@ -7,10 +7,10 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import rootReducer from './reducers/index';
 
 const persistConfig = {
-  key: 'root',
-  storage,
-  stateReconciler: hardSet,
-  whitelist: ['favorites']
+	key: 'root',
+	storage,
+	stateReconciler: hardSet,
+	whitelist: ['favorites']
 }
 
 const middlewares = [thunk];
