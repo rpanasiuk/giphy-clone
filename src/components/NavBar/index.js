@@ -9,14 +9,10 @@ export default class NavBar extends Component {
             <nav className="navbar">
                 <div className="container">
                     <div className="navbar__logo">
-                        <Link to="/"><span>GIF</span></Link>
+                        <Link to="/"><span>Gifs</span></Link>
                     </div>
 
-                    <SearchBar />
-
-                     <div className="navbar__favorites">
-                        <Link to="/favorites"><img src="." className="navbar__favorites-logo" alt="Favorites View"/></Link>
-                    </div>                   
+                    <SearchBar />                 
                 </div>
             </nav>
         );

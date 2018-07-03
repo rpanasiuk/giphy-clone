@@ -7,7 +7,7 @@ export default class GifList extends Component {
         const { data } = this.props;
         if (data) {
             return (
-                <div id='container'>
+                <div className="container main-wrap" id='container'>
                     {data.map((gif, i) => {
                         return <Gif key={i} data={gif} />
                     })}

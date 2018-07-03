@@ -1,17 +1,8 @@
-#container {
-  background-color: #aaa;
-  margin: 0 auto;
-  min-height: 500px;
-  width: 600px;
-  column-count: 3;
-  column-gap: 10px;
-}
-
-.box {
-  background-color: white;
-  border: 1px solid black;
-  width: 100%;
-  margin: 10px 0;
-  display: inline-block;
-  box-sizing: border-box;
+.main-wrap {
+    min-height: 500px;
+    width: 1040px;
+    column-count: 4;
+    column-gap: 16px;
+    column-width: 248px;
+    padding-top: 116px;
 }

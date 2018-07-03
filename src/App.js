@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart as heart, faUpload as upload, faHome as home } from '@fortawesome/free-solid-svg-icons'
+
 import NavBar from "./components/NavBar";
+import BurgerMenu from "./components/Menu";
 import Main from "./routes/Main";
 import Favorites from "./routes/Favorites";
-
 import { fetchTrendingData } from "./actions/fetch-data.js";
 
 import logo from './logo.svg';
 import './App.css';
+
+library.add([heart, upload, home]);
 
 const routes = [
     {
@@ -38,9 +44,10 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <div className="view">
+                <div className="view" id="outer-container">
                     <NavBar />
-                    <main>
+                    <BurgerMenu pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" } />
+                    <main id="page-wrap">
                         <Switch>
                             {routes.map(({ component: C, data, ...args }, index) => {
                                 return <Route

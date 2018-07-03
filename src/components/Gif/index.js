@@ -31,23 +31,29 @@ class Gif extends Component {
 
         return (
             <MuiThemeProvider>
-                <div>
-                    <div className='box'>
+                <div className='box'>
+                    <div className='gif'>
                         <a onClick={this.handleOpen}>
                             <img src={fixed_width.gif_url} alt="Loading..." />
                         </a>
                     </div>
 
                     <Dialog
-                        title="Dialog With Actions"
                         modal={false}
                         open={this.state.open}
+                        autoDetectWindowHeight={true}
+                        autoScrollBodyContent={true}
                         onRequestClose={this.handleClose}
                     >
                         <div className="popup">
                             <img src={original.gif_url} alt="Loading..." />
-                        </div>
-                        <a className="favorite" onClick={this.handleToggle}>FAV</a>
+                            <div className="popup__box">
+                                <div><span>Author</span></div>
+                                <div><span>Rating</span></div>
+                                <div><span>Button copying link</span></div>
+                                <a className="favorite" onClick={this.handleToggle}>FAV</a>
+                            </div>
+                        </div>                        
                     </Dialog>
                 </div>
             </MuiThemeProvider>

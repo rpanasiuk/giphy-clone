@@ -22,7 +22,7 @@ class SearchBar extends Component {
                 </div>
 
                  <div className="form__btn">
-                    <button className="btn btn--submit"></button>
+                    <button className="btn btn--submit"><img src="./img/searchbar_search.png" /></button>
                 </div>
             </div>
         );
