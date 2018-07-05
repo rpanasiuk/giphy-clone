@@ -2,6 +2,7 @@
 	flex: 1;
 
 	.form {
+		width: 100%;
 
 		&__row {
 			display: flex;
@@ -48,3 +49,48 @@
 	}
 }
 
+@media (max-width: 1260px) {
+	.navbar__form {		
+
+		.form {
+			width: auto;
+		}
+	}	
+}
+
+@media (max-width: 1000px) {
+	.navbar__form {		
+
+		.form {
+			width: auto;
+
+			input {
+				height: 46px;
+			}
+		}
+	}
+}
+@media (max-width: 860px) {
+	.navbar__form {		
+
+		.form {
+			width: auto;
+		}
+	}
+}
+@media (max-width: 720px) {}
+
+@media (max-width: 540px) {
+
+	.navbar__form {
+		width: 100%;
+
+		.form {
+			width: 100%;
+			
+			input {
+				height: 40px;
+			}
+		}
+	}
+}

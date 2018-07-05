@@ -6,3 +6,30 @@
     column-width: 248px;
     padding-top: 116px;
 }
+
+@media (max-width: 1140px) {
+
+	.main-wrap {
+	    width: 776px;
+	    column-count: 3;
+	}	
+}
+
+@media (max-width: 960px) {}
+@media (max-width: 860px) {
+
+	.main-wrap {
+	    width: 512px;
+	    column-count: 2;
+	}
+}
+
+@media (max-width: 720px) {}
+
+@media (max-width: 540px) {
+
+	.main-wrap {
+	    width: 248px;
+	    column-count: 1;
+	}
+}
