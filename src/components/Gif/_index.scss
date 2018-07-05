@@ -43,6 +43,7 @@
 	flex-direction: column;
 	
 	&-list {
+		margin-bottom: 15px;
 
 		&-item {
 	        color: $light-grey-palette-color;
@@ -61,16 +62,19 @@
 	}
 
 	.clipboard {
-		position: relative;
 
-		&__msg {
-			font-size: 0.75em;
-			color: green;
-			font-weight: 400;
-			position: absolute;
-			right: -5px;
-			top: 50%;
-			transform: translate(100%, -45%);
+		&__txt {
+			position: relative;
+
+			&-msg {
+				font-size: 0.75em;
+				color: green;
+				font-weight: 400;
+				position: absolute;
+				right: -5px;
+				top: 50%;
+				transform: translate(100%, -45%);
+			}			
 		}
 	}
 

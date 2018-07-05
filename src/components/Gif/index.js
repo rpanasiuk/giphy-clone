@@ -124,7 +124,7 @@ class Gif extends Component {
                                 <div className="popup__box-list">
                                     <div className="popup__box-list-item">
                                         <FontAwesomeIcon icon="user" />
-                                        <span>{ user ? user.display_name : "Anonymous" }</span>
+                                        <span>{ user && user.display_name !== "" ? user.display_name : "Anonymous" }</span>
                                     </div>
 
                                     <div className="popup__box-list-item">
@@ -143,8 +143,10 @@ class Gif extends Component {
                                       onCopy={this.onCopyToClipboardClick}>
                                         <span>
                                             <FontAwesomeIcon icon="link" />
-                                            <span>Copy Link</span>
-                                            {this.state.isLinkCopied ? <span className="clipboard__msg">Copied.</span> : null}
+                                            <span className="clipboard__txt">
+                                                Copy Link
+                                                {this.state.isLinkCopied ? <span className="clipboard__txt-msg">Copied.</span> : null}
+                                            </span>                                            
                                         </span>
                                     </CopyToClipboard>
                                     
