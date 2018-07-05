@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { toggleFavoriteGif } from "../../actions/toggle-favorite-gif.js";
 
+
 const styles = {
     dialogRoot: {
         display: "flex",
@@ -19,7 +20,7 @@ const styles = {
     dialogContent: {
         position: "relative",
         width: "80vw",
-        transform: "",
+        transform: ""
     },
     dialogBody: {
         padding: 0,
@@ -91,7 +92,7 @@ class Gif extends Component {
     componentWillUnmount() {
         if (this.copyingMessage) {
             clearTimeout(this.copyingMessage);
-        }
+        }        
     }    
 
     render() {
