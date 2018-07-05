@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart as heart, faUpload as upload, faHome as home } from '@fortawesome/free-solid-svg-icons'
+import { 
+    faHeart as heart, 
+    faUpload as upload, 
+    faHome as home,
+    faLink as link,
+    faUser as user,
+    faStar as star } from '@fortawesome/free-solid-svg-icons'
 
 import NavBar from "./components/NavBar";
 import BurgerMenu from "./components/Menu";
@@ -15,7 +21,7 @@ import { fetchTrendingData } from "./actions/fetch-data.js";
 import logo from './logo.svg';
 import './App.css';
 
-library.add([heart, upload, home]);
+library.add([heart, upload, home, link, user, star]);
 
 const routes = [
     {
