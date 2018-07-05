@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FlatButton from 'material-ui/FlatButton';
@@ -29,7 +30,7 @@ const styles = {
 class Gif extends Component {
     state = {
         isDetailedViewOpen: false,
-        copied: false,
+        isLinkCopied: false,
         isGifInFavorites: false
     }
 
@@ -49,8 +50,14 @@ class Gif extends Component {
         this.props.toggleFavoriteGif(dataObject);
     };
 
-    onClick = () => {
-        this.handleToggle();
+    onCopyToClipboardClick = () => {
+        this.setState({ isLinkCopied: true }, () => {
+            this.copyingMessage = setTimeout(() => {
+                this.setState({ isLinkCopied: false }, () => {
+                    clearTimeout(this.copyingMessage);
+                })
+            }, 3000);
+        })
     }
 
     checkFavorites = (props) => {
@@ -72,7 +79,7 @@ class Gif extends Component {
             ( newProps.favorites[this.props.data.id] && !this.state.isGifInFavorites ) ||
             ( !newProps.favorites[this.props.data.id] && this.state.isGifInFavorites ) ||
             ( this.state.isDetailedViewOpen !== newState.isDetailedViewOpen ) ||
-            ( this.state.copied !== newState.copied )
+            ( this.state.isLinkCopied !== newState.isLinkCopied )
         ) {
             this.checkFavorites(newProps);
             return true;
@@ -80,6 +87,12 @@ class Gif extends Component {
 
         return false;
     }
+
+    componentWillUnmount() {
+        if (this.copyingMessage) {
+            clearTimeout(this.copyingMessage);
+        }
+    }    
 
     render() {
         const { images: { original, fixed_width }, rating, user } = this.props.data;
@@ -104,23 +117,42 @@ class Gif extends Component {
                         onRequestClose={this.handleClose}
                     >
                         <div className="popup__main">
+
                             <img src={original.gif_url} alt="Loading..." />
                             <div className="popup__box">
+
                                 <div className="popup__box-list">
-                                    <div className="popup__box-list-item"><FontAwesomeIcon icon="user" /><span>{ user ? user.display_name : "Anonymous" }</span></div>
-                                    <div className="popup__box-list-item"><FontAwesomeIcon icon="star" /><span>{ rating.toUpperCase() }</span></div>
+                                    <div className="popup__box-list-item">
+                                        <FontAwesomeIcon icon="user" />
+                                        <span>{ user ? user.display_name : "Anonymous" }</span>
+                                    </div>
+
+                                    <div className="popup__box-list-item">
+                                        <FontAwesomeIcon icon="star" />
+                                        <span>Rating: { rating.toUpperCase() }</span>
+                                    </div>
+
                                     <div className={`popup__box-list-item fav${this.state.isGifInFavorites ? " isActive" : ""}`}>
-                                        <a onClick={this.onClick}><FontAwesomeIcon icon="heart" />
+                                        <a onClick={this.handleToggle}>
+                                            <FontAwesomeIcon icon="heart" />
                                             <span>Favorites</span>
                                         </a>
                                     </div>
+
                                     <CopyToClipboard text={original.gif_url} className="popup__box-list-item clipboard"
-                                      onCopy={() => this.setState({copied: true})}>
-                                      <span><FontAwesomeIcon icon="link" /><span>Copy Link</span></span>
+                                      onCopy={this.onCopyToClipboardClick}>
+                                        <span>
+                                            <FontAwesomeIcon icon="link" />
+                                            <span>Copy Link</span>
+                                            {this.state.isLinkCopied ? <span className="clipboard__msg">Copied.</span> : null}
+                                        </span>
                                     </CopyToClipboard>
+                                    
                                 </div>
+
                                 <div className="popup__box-btn">                                
                                     <FlatButton
+                                        className="btn btn--cancel"
                                         label="Cancel"
                                         backgroundColor='#c9d6de'
                                         labelStyle={{color: "#121212"}}
@@ -129,10 +161,12 @@ class Gif extends Component {
                                         onClick={this.handleClose}
                                     />
                                 </div>
+
                             </div>
                         </div>
 
-                        <div className="popup__footer"></div>                   
+                        <div className="popup__footer"></div> 
+                                          
                     </Dialog>
                 </div>
             </MuiThemeProvider>

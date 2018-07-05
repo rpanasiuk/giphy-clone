@@ -20,14 +20,11 @@
 	}
 }
 
-
-
 .popup__main {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	max-width: 720px;	
-	// height: 100%;
+	max-width: 720px;
 	padding: 24px;
 	justify-content: space-around;
 
@@ -35,7 +32,6 @@
 		width: 50%;
 		height: 100%;
 		max-width: 500px;
-		// max-height: 400px; // ZMIENIAM MAX-HEIGHT ZALEZNIE OD SZEROKOSCI EKRANU
 		min-height: 100px;
 	}
 }
@@ -64,6 +60,20 @@
 		}		
 	}
 
+	.clipboard {
+		position: relative;
+
+		&__msg {
+			font-size: 0.75em;
+			color: green;
+			font-weight: 400;
+			position: absolute;
+			right: -5px;
+			top: 50%;
+			transform: translate(100%, -45%);
+		}
+	}
+
 	.fav,
 	.clipboard {
 		cursor: pointer;
@@ -89,14 +99,7 @@
 	width: 100%;
 }
 
-// .clipboard {
-// 	border: 2px solid $light-grey-palette-color;
-// 	border-radius: 2rem;
-// }
-
-@media (max-width: 1140px) {
-
-}
+@media (max-width: 1140px) {}
 
 @media (max-width: 960px) {
 
@@ -138,6 +141,14 @@
 				text-align: center;
 			}			
 		}
+
+		&-btn {
+			margin-top: 20px;
+		}
+
+		.btn--cancel {
+			width: 40%;
+		}
 	}	
 }
 
@@ -149,6 +160,8 @@
 			width: 100%;
 			max-height: 400px;
 		}
+
+
 	}
 
 	.popup__box {
@@ -156,16 +169,16 @@
 		&-list {
 
 			&-item {
-		        font-weight: 500;
-		        font-size: 1.3rem;
-		        flex-basis: 100%;		        
-		        padding-left: 40%;
-		        justify-content: flex-start;
-			}			
-
-			span {
-				// text-align: left;
+				padding: 10px 0;
+		        font-weight: 600;
+		        font-size: 1.5rem;
+		        flex-basis: 100%;
+		        justify-content: center;
 			}
+		}
+
+		.btn--cancel {
+			width: 70%;
 		}
 	}
 }
