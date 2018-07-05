@@ -80,7 +80,8 @@ class Gif extends Component {
             ( newProps.favorites[this.props.data.id] && !this.state.isGifInFavorites ) ||
             ( !newProps.favorites[this.props.data.id] && this.state.isGifInFavorites ) ||
             ( this.state.isDetailedViewOpen !== newState.isDetailedViewOpen ) ||
-            ( this.state.isLinkCopied !== newState.isLinkCopied )
+            ( this.state.isLinkCopied !== newState.isLinkCopied ) ||
+            ( this.props.data !== newProps.data )
         ) {
             this.checkFavorites(newProps);
             return true;

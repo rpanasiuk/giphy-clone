@@ -7,7 +7,6 @@ import { fetchData } from "../../actions/fetch-data.js";
 class SearchBar extends Component {
 
     renderField = (field) => {
-        console.log(field);
         return (
             <div className="form__row">
                 <div className="form__anim">
